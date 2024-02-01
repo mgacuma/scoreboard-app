@@ -32,8 +32,9 @@
    let particles = Array.from({ length: 50 }, (_, index) => ({
     id: index,
     left: Math.random() * 150,
-    duration: Math.random() * 3.7 + 0.5,
-    size: Math.random() * 48 + 16 // Random size between 16 and 64 pixels
+    duration: Math.random() * 5 + 2,
+    size: Math.random() * 48 + 16, // Random size between 16 and 64 pixels
+    delay: Math.random() * 3
   }));
 </script>
 
@@ -49,7 +50,7 @@
 
   .rain-container {
     position: fixed;
-    top: -48px;
+    top: -600px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -59,14 +60,14 @@
 
   .raindrop {
     position: absolute;
-    background: url('./favicon-32x32.png') no-repeat center center;
+    background: url('/favicon-32x32.png') no-repeat center center;
     background-size: contain;
     animation: rainAnimation 1s linear infinite;
   }
 
   @keyframes rainAnimation {
     to {
-      transform: translateY(100vh) translateX(-40vw) scaleX(.55) scaleY(.55);
+      transform: translateY(500vh) translateX(-350vw) scaleX(.33) scaleY(.33);
     }
   }
 </style>
@@ -96,11 +97,11 @@
   <button on:click={resetScore}>Reset</button>
 </div>
 <div class="rain-container">
-  {#each particles as { id, left, duration, size }}
+  {#each particles as { id, left, duration, size, delay }}
     <div
       bind:this={particles[id]}
       class="raindrop"
-      style="left: {left}vw; animation-duration: {duration}s; animation-delay: {Math.random()}s; width: {size}px; height: {size}px;"
+      style="left: {left}vw; animation-duration: {duration}s; animation-delay: {delay}s; width: {size}px; height: {size}px;"
     ></div>
   {/each}
 </div>
