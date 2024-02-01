@@ -34,6 +34,7 @@
   /* Add your styles here */
   :global(*) {
     box-sizing: border-box;
+    touch-action: manipulation;
   }
 
   .icon {
