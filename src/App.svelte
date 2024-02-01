@@ -28,10 +28,16 @@
     score1 = 0;
     score2 = 0;
   }
+
+   let particles = Array.from({ length: 50 }, (_, index) => ({
+    id: index,
+    left: Math.random() * 150,
+    duration: Math.random() * 3.7 + 0.5,
+    size: Math.random() * 48 + 16 // Random size between 16 and 64 pixels
+  }));
 </script>
 
 <style>
-  /* Add your styles here */
   :global(*) {
     box-sizing: border-box;
     touch-action: manipulation;
@@ -39,6 +45,29 @@
 
   .icon {
     height: 48px;
+  }
+
+  .rain-container {
+    position: fixed;
+    top: -48px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -9;
+  }
+
+  .raindrop {
+    position: absolute;
+    background: url('./favicon-32x32.png') no-repeat center center;
+    background-size: contain;
+    animation: rainAnimation 1s linear infinite;
+  }
+
+  @keyframes rainAnimation {
+    to {
+      transform: translateY(100vh) translateX(-40vw) scaleX(.55) scaleY(.55);
+    }
   }
 </style>
 
@@ -65,6 +94,13 @@
     </div>
   </div>
   <button on:click={resetScore}>Reset</button>
-  
-  
+</div>
+<div class="rain-container">
+  {#each particles as { id, left, duration, size }}
+    <div
+      bind:this={particles[id]}
+      class="raindrop"
+      style="left: {left}vw; animation-duration: {duration}s; animation-delay: {Math.random()}s; width: {size}px; height: {size}px;"
+    ></div>
+  {/each}
 </div>
