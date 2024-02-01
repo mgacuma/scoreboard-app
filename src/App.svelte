@@ -42,7 +42,7 @@
   }
 </style>
 
-<div style="padding: 8px; min-width: 320px;">
+<div style="padding: 8px; min-width: 320px; height: 100%;">
   <p>Score</p>
   <div id="parent" style="display:flex; flex-direction: row; justify-content: center;">
     <div style='margin: 8px;'>
