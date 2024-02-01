@@ -67,7 +67,7 @@
 
   @keyframes rainAnimation {
     to {
-      transform: translateY(500vh) translateX(-350vw) scaleX(.33) scaleY(.33);
+      transform: translateY(500vh) translateX(-200vw) scaleX(.33) scaleY(.33);
     }
   }
 </style>
